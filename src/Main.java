@@ -1,15 +1,30 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        DFA dfa = new DFA();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        System.out.println("Enter a binary string (only '0' and '1'):");
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        boolean validInput = true;
+
+        for (char ch : input.toCharArray()) {
+            int result = dfa.processSymbol(ch);
+            if (result == DFA.UNKNOWN_SYMBOL_ERR) {
+                System.out.println("Error: Unknown symbol encountered.");
+                validInput = false;
+                break;
+            }
         }
+
+        if (validInput && dfa.isInAcceptedState()) {
+            System.out.println("Accepted");
+        } else {
+            System.out.println("Rejected");
+        }
+
+        scanner.close();
     }
 }
