@@ -9,8 +9,10 @@ public class Main {
         String input = scanner.nextLine();
 
         boolean validInput = true;
+        char[] charArray = input.toCharArray();
 
-        for (char ch : input.toCharArray()) {
+        for (int i = charArray.length - 1; i >= 0; i--) {
+            char ch = charArray[i];
             int result = dfa.processSymbol(ch);
             if (result == DFA.UNKNOWN_SYMBOL_ERR) {
                 System.out.println("Error: Unknown symbol encountered.");
