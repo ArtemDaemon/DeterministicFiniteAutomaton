@@ -8,7 +8,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
 
-        int result = FA.UNKNOWN_SYMBOL_ERR;
+        int result = fa.isCurrentStateAccepted();
         char[] charArray = input.toCharArray();
 
         for (int i = charArray.length - 1; i >= 0; i--) {

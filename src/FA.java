@@ -44,6 +44,10 @@ public class FA {
         if(charPosition == ALPHABET_CHARACTERS) return UNKNOWN_SYMBOL_ERR;
 
         this.currentState = transitionTable[this.currentState][charPosition];
+        return isCurrentStateAccepted();
+    }
+
+    public int isCurrentStateAccepted() {
         for (STATES acceptedState : ACCEPTED_STATES) {
             if (this.currentState == acceptedState.ordinal())
                 return REACHED_FINAL_STATE;
